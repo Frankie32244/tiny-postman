@@ -1,6 +1,8 @@
-# tiny-postman
+<img width="1272" height="700" alt="image" src="https://github.com/user-attachments/assets/9d1e3ae4-2c6f-4226-80e5-5a0fd0e3e7a6" /># tiny-postman
 
 受 Insomnia 启发的轻量级本地 HTTP API 客户端。提供 Atom One Dark 三栏界面，使用原生 JavaScript 和 Node.js，无需安装第三方依赖。
+
+![](./Pics/001.png)
 
 ## 快速开始
 
