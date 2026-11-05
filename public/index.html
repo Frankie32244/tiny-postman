@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tiny-postman</title>
+<link rel="stylesheet" href="/style.css">
+<script type="module" src="/app.js"></script>
+</head>
+<body>
+<header class="top"><div class="mark" aria-hidden="true"></div><strong>tiny-postman</strong><span class="slash">/</span><span>Local workspace</span><span class="local"><i></i> Local proxy</span></header>
+<main>
+<aside class="sidebar">
+  <div class="workspace"><span class="workspace-icon">W</span><div><strong>My Workspace</strong><small>Personal workspace</small></div></div>
+  <button id="env-open" class="environment">◈ &nbsp; Environment variables <span>›</span></button>
+  <div class="side-tabs"><button data-side="saved" class="active">Collections</button><button data-side="history">History</button></div>
+  <div class="section-label"><span id="side-title">REQUESTS</span><button id="new" title="New request" aria-label="New request">+</button></div>
+  <label id="history-option" class="side-note" hidden><input id="keep-history-details" type="checkbox"> Keep request details after refresh <small>Stores URLs, headers, bodies and credentials in this browser tab.</small></label>
+  <div id="side-list"></div>
+  <footer><button id="import-open">⇥ &nbsp; Import cURL</button></footer>
+</aside>
+<section class="editor pane">
+  <div class="pane-heading"><div><small>REQUEST</small><input id="name" aria-label="Request name" placeholder="Untitled request"></div><button id="save">Save request</button></div>
+  <form id="request-form" class="request-line">
+    <select id="method" aria-label="HTTP method"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option><option>HEAD</option><option>OPTIONS</option></select>
+    <input id="url" aria-label="Request URL" placeholder="https://api.example.com" spellcheck="false" required>
+    <button class="primary" id="send">Send <span>↗</span></button>
+  </form>
+  <div class="tabs"><button data-editor="query" class="active">Query</button><button data-editor="headers">Headers</button><button data-editor="body">Body</button><button data-editor="auth">Auth</button></div>
+  <div class="pane-content">
+    <section id="query"><h2>Query parameters</h2><p>Append key-value pairs to the request URL.</p><div id="query-rows"></div><button data-add="query">+ Add parameter</button></section>
+    <section id="headers" hidden><h2>Request headers</h2><p>Set additional headers for this request.</p><div id="headers-rows"></div><button data-add="headers">+ Add header</button></section>
+    <section id="body" hidden><h2>Request body</h2><select id="body-type" aria-label="Body type"><option value="none">No body</option><option value="json">JSON</option><option value="raw">Raw text</option><option value="form">Form URL encoded</option><option value="multipart">Multipart form (text)</option></select><textarea id="body-text" aria-label="Body content" spellcheck="false" hidden></textarea><div id="form-fields" hidden><div id="form-rows"></div><button data-add="form">+ Add field</button></div></section>
+    <section id="auth" hidden><h2>Authentication</h2><select id="auth-type" aria-label="Authentication type"><option value="none">No auth</option><option value="bearer">Bearer token</option><option value="basic">Basic auth</option></select><label id="auth-user-label" hidden>Username<input id="auth-user" autocomplete="off"></label><label id="auth-secret-label" hidden><span id="auth-secret-title">Token</span><input id="auth-secret" type="password" autocomplete="off"></label></section>
+    <p id="notice" role="status"></p>
+  </div>
+</section>
+<section class="response pane">
+  <div class="pane-heading"><div><small>RESPONSE</small><h1>Response</h1></div><div id="metrics" aria-live="polite"></div></div>
+  <div class="tabs"><button data-response="preview" class="active">Body</button><button data-response="response-headers">Headers</button></div>
+  <div class="response-content">
+    <div id="empty"><div class="empty-icon">⇄</div><strong>Ready to send</strong><p>Send a request to inspect its response.</p></div>
+    <pre id="preview" hidden></pre><div id="response-headers" hidden></div>
+  </div>
+</section>
+</main>
+<dialog id="env-dialog"><div class="dialog-title"><h2>Environment variables</h2><button data-close="env-dialog" aria-label="Close">×</button></div><p>Use {{name}} in request fields. Values are kept in memory and cleared on reload.</p><div id="env-rows"></div><button data-add="env">+ Add variable</button><button class="primary" data-close="env-dialog">Done</button></dialog>
+<dialog id="import-dialog"><div class="dialog-title"><h2>Import cURL</h2><button data-close="import-dialog" aria-label="Close">×</button></div><p>Paste a cURL command to load it into the editor.</p><textarea id="curl" aria-label="cURL command" spellcheck="false"></textarea><p id="import-error" role="alert"></p><button class="primary" id="import">Import request</button></dialog>
+<dialog id="save-dialog"><div class="dialog-title"><h2>Save request template</h2><button data-close="save-dialog" aria-label="Close">×</button></div><p>The URL, query, non-sensitive headers, body and any auth variable references are stored in this browser. Replace any literal secrets in those fields with {{variables}} before saving.</p><button data-close="save-dialog">Back</button><button class="primary" id="save-confirm">Save template</button></dialog>
+</body>
+</html>
